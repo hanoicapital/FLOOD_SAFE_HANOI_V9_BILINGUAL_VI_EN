@@ -1,8 +1,38 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FLOOD-SAFE HANOI V9 | Routing for Any Place</title>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"><style>
 :root{--bg:#071525;--panel:#11263a;--line:#315068;--text:#e9f7ff;--muted:#a8c2d3;--cyan:#48c7f3;--green:#19c68c;--yellow:#ffd057;--red:#ff655e}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,Arial}button,input,select,textarea{font:inherit}button{cursor:pointer;background:#224760;color:white;border:1px solid #4a7291;padding:9px 11px;border-radius:8px}button:hover{background:#326884}button:disabled{opacity:.6}input,select,textarea{width:100%;padding:8px;color:white;border:1px solid #48637b;background:#0c2133;border-radius:7px}input[type=range]{padding:0}input[type=checkbox]{width:auto}h1{font-size:19px;margin:0}h2{font-size:15px;margin:0 0 9px}.small{font-size:12px;color:var(--muted)}header{background:#10273c;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:305px minmax(410px,1fr) 330px;gap:10px;padding:10px;height:calc(100dvh - 73px);min-height:570px}.side{overflow-y:auto;display:flex;flex-direction:column;gap:10px;min-height:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px}.row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.field{margin:9px 0}.field label{font-size:12px;color:#d1eaff;display:block;margin-bottom:5px}.mapbox{position:relative;border:1px solid #4e6b7e;border-radius:12px;overflow:hidden;min-height:430px}#map{position:absolute;inset:0;background:#bdd4df}.mapmenu{position:absolute;z-index:5;top:10px;left:10px;display:flex;gap:6px;flex-wrap:wrap;background:#0d2438e8;padding:7px;border-radius:9px;max-width:calc(100% - 20px)}.mapmenu select{width:auto;max-width:185px}.mapwarn{position:absolute;z-index:4;bottom:10px;left:10px;max-width:520px;background:#0a2037e8;padding:9px;border:1px solid #708093;border-radius:8px;font-size:12px;pointer-events:none}.stat{background:#1b3953;border:1px solid #345671;border-radius:8px;padding:8px;flex:1;min-width:105px}.stat b{font-size:18px;display:block}.stat small{color:var(--muted)}.legend{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0}.dot{height:11px;width:11px;border-radius:50%;display:inline-block;margin-right:5px}.routing{border:1px solid #3f6a7b;border-left:5px solid #21b6da;border-radius:8px;padding:9px;margin:8px 0}.routing.best{border-left-color:#20d3a3;background:#153b37}.notice{padding:8px;border:1px solid #8a7142;background:#332b1c;color:#ffe8ac;border-radius:8px;font-size:12px}.error{color:#ff9b9b}.ok{color:#6be9b7}#status{white-space:pre-line;font-size:12px;color:#bcd1df}canvas{width:100%;height:120px;background:#092033;border-radius:8px}table{border-collapse:collapse;width:100%;font-size:12px}td,th{padding:6px;border-bottom:1px solid var(--line)}#toast{position:fixed;bottom:15px;right:14px;z-index:50;background:#1a4058;border:1px solid #6ba7c0;border-radius:9px;padding:12px;display:none;max-width:370px}.pill{border:1px solid #567b94;border-radius:25px;padding:4px 8px;font-size:11px}.maplibregl-popup-content{color:#132535;max-width:280px}.routeName{font-weight:bold}.badge{padding:3px 7px;border-radius:5px;border:1px solid #537086;font-size:11px}footer{font-size:11px;color:#aec2d2}@media(max-width:1120px){.layout{grid-template-columns:280px minmax(360px,1fr);height:auto}.mapbox{height:700px}.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}}@media(max-width:720px){.layout{display:flex;flex-direction:column}.side{overflow:visible}.mapbox{height:65vh;min-height:440px}.right{display:flex}.mapmenu{position:absolute}header h1{font-size:16px}}
-.candidate-box{display:none;margin-top:6px;max-height:210px;overflow-y:auto;background:#0b2236;border:1px solid #52728a;border-radius:8px}.candidate{display:block;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid #35516b;border-radius:0;font-size:12px;padding:9px}.candidate:hover{background:#1c4663}.subtle{color:#a6c1d4;font-size:11px}.route-progress{padding:7px 0;color:#bcecff}.route-metrics{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.route-metrics span{background:#1e4059;padding:3px 5px;border-radius:4px;font-size:11px} .route-controls{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}</style></head><body>
+.candidate-box{display:none;margin-top:6px;max-height:210px;overflow-y:auto;background:#0b2236;border:1px solid #52728a;border-radius:8px}.candidate{display:block;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid #35516b;border-radius:0;font-size:12px;padding:9px}.candidate:hover{background:#1c4663}.subtle{color:#a6c1d4;font-size:11px}.route-progress{padding:7px 0;color:#bcecff}.route-metrics{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}.route-metrics span{background:#1e4059;padding:3px 5px;border-radius:4px;font-size:11px} .route-controls{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}</style>
+<!-- BEGIN ADDED CONTEST INFORMATION STYLES; original V9 styles unchanged -->
+<style id="submission-info-styles">
+#submissionInfo {margin: 0; padding: 11px 18px 12px; background: linear-gradient(115deg, #112d45, #173951 52%, #112d45); color:#eaf8ff; border-bottom:1px solid #41627b; text-align:center; font-family:system-ui,Arial,sans-serif; box-sizing:border-box;}
+#submissionInfo .submission-title {max-width:1450px;margin:0 auto 5px;font-size:16px;font-weight:750;line-height:1.4;color:#f1fbff;}
+#submissionInfo .submission-competition {font-size:13px;font-weight:750;letter-spacing:.035em;color:#80d7ff;margin:0 auto 6px;}
+#submissionInfo .submission-line {margin:2px auto;font-size:12px;line-height:1.55;}
+#submissionInfo .submission-advisors {margin:4px auto 0;font-size:12px;line-height:1.55;}
+#submissionInfo .submission-advisors strong {font-weight:700;}
+#submissionInfo .submission-lang[hidden] {display:none !important;}
+@media(max-width:720px){#submissionInfo{padding:9px 12px;}#submissionInfo .submission-title{font-size:14px;}#submissionInfo .submission-competition{font-size:12px;}#submissionInfo .submission-line,#submissionInfo .submission-advisors{font-size:11px;}}
+</style>
+<!-- END ADDED CONTEST INFORMATION STYLES -->
+</head><body>
 <header><div><h1>🌧️ FLOOD-SAFE HANOI <span class="pill">V9.0 · Tìm đường mọi địa điểm</span></h1><div class="small">Dữ liệu mưa 15 ngày · Bản đồ giao thông · Cảnh báo theo bằng chứng · So sánh tuyến đường</div></div><div class="row"><label for="languageSelect" class="small" id="languageLabel">Ngôn ngữ / Language</label><select id="languageSelect" aria-label="Language / Ngôn ngữ" style="width:auto;min-width:112px"><option value="vi">🇻🇳 Tiếng Việt</option><option value="en">🇬🇧 English</option></select><span id="clock" class="small"></span><button id="refresh">↻ Cập nhật dữ liệu</button></div></header>
+<!-- BEGIN ADDED CONTEST INFORMATION (VN/EN); original V9 content unchanged -->
+<section id="submissionInfo" aria-label="Thông tin nhóm dự thi / Competition project information">
+  <div class="submission-lang" id="submissionInfoVi" lang="vi">
+    <div class="submission-title">FLOOD-SAFE HANOI – Hệ thống bản đồ cảnh báo nguy cơ ngập cục bộ và hỗ trợ lựa chọn tuyến đường phù hợp tại Hà Nội</div>
+    <div class="submission-competition">SẢN PHẨM DỰ THI CUỘC THI SÁNG TẠO TRẺ HÀ NỘI 2026</div>
+    <p class="submission-line"><strong>Nhóm tác giả:</strong> Lê Vũ Nguyệt Hà và Trịnh Thị Thanh Loan | <strong>Cơ sở giáo dục:</strong> Trường Trung học phổ thông Khương Đình, Hà Nội</p>
+    <p class="submission-line"><strong>Người hướng dẫn/cố vấn:</strong> CN. Hoàng Thị Lan – Giáo viên Trường Trung học phổ thông Khương Đình và TS. Lê Phú Tuấn – Giảng viên Trường Đại học Công nghệ Giao thông Vận tải</p>
+  </div>
+  <div class="submission-lang" id="submissionInfoEn" lang="en" hidden>
+    <div class="submission-title">FLOOD-SAFE HANOI – A Web-Based Mapping System for Localized Flood Risk Warnings and Route Selection Support in Hanoi</div>
+    <div class="submission-competition">PROJECT SUBMITTED TO THE HANOI YOUNG INNOVATORS COMPETITION 2026</div>
+    <p class="submission-line"><strong>Project Team:</strong> Le Vu Nguyet Ha and Trinh Thi Thanh Loan | <strong>Educational Institution:</strong> Khuong Dinh High School, Hanoi, Vietnam</p>
+    <p class="submission-line"><strong>Supervisors:</strong> Ms. Hoang Thi Lan, B.A. – Teacher, Khuong Dinh High School, Hanoi, and Dr. Le Phu Tuan – Lecturer, University of Transport Technology, Hanoi.</p>
+  </div>
+</section>
+<!-- END ADDED CONTEST INFORMATION -->
+
 <div class="layout"><aside class="side"><section class="panel"><h2>📅 Thời gian phân tích</h2><div class="small">7 ngày trước / hôm nay / 7 ngày sau (giờ Hà Nội)</div><div class="field"><label>Ngày: <b id="dayText"></b></label><input id="day" type="range" min="0" max="14" value="7"></div><div class="field"><label>Giờ: <b id="hourText">12:00</b></label><input id="hour" type="range" min="0" max="23" value="12"></div><div class="field"><label>Vị trí dữ liệu mưa</label><select id="station"></select></div><div class="row"><div class="stat"><small>Mưa cả ngày</small><b id="rainDay">—</b></div><div class="stat"><small>Mưa giờ chọn</small><b id="rainHour">—</b></div></div><p class="small" id="rainDescription">Đang tải dữ liệu...</p><p id="riskText" class="small"></p></section>
 <section class="panel"><h2>📊 Biểu đồ lượng mưa theo giờ</h2><canvas id="chart"></canvas><div class="row"><button id="exportRain">↓ CSV mưa</button><button id="exportReport">↓ JSON tổng hợp</button></div></section>
 <section class="panel"><h2>🗺️ Lớp thông tin</h2><div><label><input type="checkbox" id="toggleStations" checked> Điểm dữ liệu mưa</label></div><div><label><input type="checkbox" id="toggleReports" checked> Báo cáo điểm ngập</label></div><div><label><input type="checkbox" id="toggleRoutes" checked> Tuyến đề xuất</label></div><div class="legend"><span><i class="dot" style="background:#0ac783"></i>Chưa cảnh báo</span><span><i class="dot" style="background:#ffcc49"></i>Nguy cơ</span><span><i class="dot" style="background:#f35458"></i>Cần tránh*</span></div><div class="small">*Đỏ chỉ xuất hiện gần báo cáo ngập phù hợp thời gian; báo cáo cộng đồng chưa được xác minh độc lập.</div></section>
@@ -267,4 +297,23 @@ control.addEventListener('change',()=>{current=control.value;document.documentEl
 let queued=false;const mo=new MutationObserver(()=>{if(queued)return;queued=true;queueMicrotask(()=>{queued=false;updateTranslations()})});mo.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label']});
 updateTranslations();
 })();
-</script></body></html>
+</script>
+<!-- BEGIN ADDED CONTEST LANGUAGE SYNCHRONIZATION; original V9 scripts unchanged -->
+<script id="submission-info-language-sync">
+(function () {
+  'use strict';
+  const languageSelect = document.getElementById('languageSelect');
+  const vi = document.getElementById('submissionInfoVi');
+  const en = document.getElementById('submissionInfoEn');
+  if (!languageSelect || !vi || !en) return;
+  function syncCompetitionInfo() {
+    const isEnglish = languageSelect.value === 'en';
+    vi.hidden = isEnglish;
+    en.hidden = !isEnglish;
+  }
+  languageSelect.addEventListener('change', syncCompetitionInfo);
+  syncCompetitionInfo();
+})();
+</script>
+<!-- END ADDED CONTEST LANGUAGE SYNCHRONIZATION -->
+</body></html>
